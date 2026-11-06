@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -25,21 +26,19 @@
             padding: 0;
         }
 
-        /* SFONDO FISSO CON LA GRAFICA SICILIANA */
+        /* SFONDO FISSO OTTIMIZZATO ANCHE PER MOBILE */
         body {
             font-family: var(--font-sans);
-            /* Richiama l'immagine "sfondo.jpg" che salverai nella cartella */
-            background: url('sfondo.jpg') center top / cover fixed no-repeat;
+            background: url('sfondo.jpg') center center / cover no-repeat fixed;
             color: var(--dark-green);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* COLONNA CENTRALE PIÙ STRETTA PER MOSTRARE I LATI DELLO SFONDO */
         .main-wrapper {
-            max-width: 850px; /* Stretto per far vedere Teste di Moro e Maioliche ai lati */
+            max-width: 850px;
             margin: 40px auto;
-            background: rgba(253, 251, 245, 0.92); /* Avorio quasi opaco per leggere bene i testi */
+            background: rgba(253, 251, 245, 0.95);
             box-shadow: 0 0 40px rgba(0,0,0,0.3);
             position: relative;
             z-index: 2;
@@ -48,7 +47,6 @@
             border: 2px solid var(--gold);
         }
 
-        /* --- HEADER & HERO --- */
         .hero {
             position: relative;
             display: flex;
@@ -154,7 +152,6 @@
             text-transform: uppercase;
         }
 
-        /* --- CONTENUTO (Countdown, Timeline, Info) --- */
         .section-container {
             padding: 60px 40px;
             text-align: center;
@@ -190,7 +187,6 @@
         .cd-number { font-family: var(--font-serif); font-size: 2.5rem; color: var(--dark-green); line-height: 1; }
         .cd-label { font-size: 0.75rem; letter-spacing: 1px; font-weight: 600; color: #888; margin-top: 5px; }
 
-        /* --- TIMELINE --- */
         .timeline-wrapper { margin-top: 60px; }
 
         .timeline-row {
@@ -203,20 +199,19 @@
 
         .tl-image {
             flex: 1;
-            height: 220px;
+            height: 250px;
             border-radius: 10px;
             background-color: #eee;
             background-position: center;
             background-size: cover;
             border: 2px solid var(--gold);
+            width: 100%;
         }
 
-        /* Immagine 1: LA TUA FOTO DELLA CHIESA */
         .img-chiesa {
             background-image: url('chiesa.jpg');
         }
 
-        /* Immagine 2: RICEVIMENTO (Placeholder elegante) */
         .img-ricevimento {
             background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80');
         }
@@ -243,6 +238,7 @@
             font-family: var(--font-serif);
             font-size: 1.1rem;
             border: 3px solid var(--bg-ivory);
+            z-index: 3;
         }
 
         .tl-content h3 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--dark-green); }
@@ -252,16 +248,21 @@
         .btn-outline {
             display: inline-block;
             margin-top: 15px;
-            padding: 10px 20px;
-            border: 1px solid var(--dark-green);
+            padding: 12px 24px;
+            border: 2px solid var(--dark-green);
             color: var(--dark-green);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            border-radius: 4px;
+            border-radius: 6px;
+            background: transparent;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background: var(--dark-green);
+            color: white;
         }
 
-        /* --- 4 COLONNE INFO --- */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -277,7 +278,6 @@
         .info-item h4 { font-family: var(--font-serif); color: var(--dark-green); margin-bottom: 10px; font-size: 1rem; }
         .info-item p { font-size: 0.85rem; color: #666; }
 
-        /* --- RSVP --- */
         .rsvp-section {
             padding: 50px 40px;
             text-align: center;
@@ -295,7 +295,9 @@
             font-size: 1rem;
             border-radius: 8px;
             cursor: pointer;
+            transition: opacity 0.3s;
         }
+        .btn-solid:hover { opacity: 0.9; }
 
         .footer {
             background: var(--dark-green);
@@ -305,20 +307,61 @@
         }
         .footer h3 { font-family: var(--font-cursive); font-size: 2.5rem; color: white; margin-bottom: 5px; font-weight: normal;}
 
-        /* Responsive Mobile */
+        /* --- OTTIMIZZAZIONE MOBILE ULTRACURATA --- */
         @media (max-width: 768px) {
-            .main-wrapper { margin: 10px; }
-            .hero h1 { font-size: 4.5rem; }
-            .timeline-row { flex-direction: column; }
-            .tl-image { width: 100%; height: 200px; }
-            .tl-content { border-left: none; padding-left: 0; border-top: 2px solid var(--gold); padding-top: 20px; text-align: center; }
-            .tl-number { left: 50%; transform: translateX(-50%); top: -20px; }
+            body {
+                background-size: cover;
+                background-attachment: scroll; /* Risolve problemi di rendering dello sfondo su mobile */
+            }
+            .main-wrapper { 
+                margin: 0; 
+                border-radius: 0;
+                border: none;
+                width: 100%;
+            }
+            .hero { padding: 60px 15px 30px 15px; }
+            .hero h1 { font-size: 3.8rem; }
+            .top-bar { padding: 0 15px; }
+            
+            .section-container { padding: 40px 20px; }
+            .info-grid { grid-template-columns: 1fr; padding: 30px 20px; }
+            
+            .timeline-row { 
+                flex-direction: column; 
+                gap: 20px;
+                margin-bottom: 40px;
+            }
+            .timeline-row:nth-child(2) {
+                flex-direction: column; /* Mantiene coerenza visiva anche per il secondo blocco */
+            }
+            .tl-image { 
+                width: 100%; 
+                height: 220px; 
+            }
+            .tl-content { 
+                border-left: none; 
+                border-top: 2px solid var(--gold); 
+                padding-left: 0; 
+                padding-top: 25px; 
+                text-align: center; 
+                width: 100%;
+            }
+            .tl-number { 
+                left: 50% !important; 
+                right: auto !important;
+                transform: translateX(-50%); 
+                top: -20px; 
+            }
             .tl-detail { justify-content: center; }
-            .timeline-row:nth-child(2) .tl-content { border-right: none; padding-right: 0; }
-            .info-grid { grid-template-columns: 1fr; }
+            .timeline-row:nth-child(2) .tl-content { 
+                border-right: none; 
+                padding-right: 0; 
+                text-align: center; 
+            }
+            .rsvp-section h2 { font-size: 2.8rem; }
+            .btn-outline { width: 100%; text-align: center; }
         }
 
-        /* MODALE RSVP */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: var(--bg-ivory); padding: 30px; border-radius: 10px; width: 90%; max-width: 450px; position: relative; border: 2px solid var(--gold); }
         .modal-content label { font-family: var(--font-sans); font-weight: 600; font-size: 0.85rem; }
@@ -329,7 +372,7 @@
 <body>
 
     <!-- MUSICA -->
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop preload="auto">
         <source src="cocciu_damuri.mp3" type="audio/mpeg">
     </audio>
 
@@ -339,7 +382,7 @@
             <div class="top-bar">
                 <div class="monogram">F&M</div>
                 <div class="music-control" onclick="toggleMusic()">
-                    <span>Musica</span>
+                    <span id="music-text">Tocca per la musica</span>
                     <button class="music-btn" id="music-btn">🎵</button>
                 </div>
             </div>
@@ -363,7 +406,6 @@
 
             <div class="timeline-wrapper">
                 <div class="timeline-row">
-                    <!-- QUI CARICA LA FOTO DELLA CHIESA (chiesa.jpg) -->
                     <div class="tl-image img-chiesa"></div>
                     <div class="tl-content">
                         <div class="tl-number">1</div>
@@ -377,14 +419,14 @@
                 </div>
 
                 <div class="timeline-row">
-                    <div class="tl-content" style="border-left: none; border-right: 2px solid var(--gold); padding-left: 0; padding-right: 30px; text-align: right;">
-                        <div class="tl-number" style="left: auto; right: -20px;">2</div>
+                    <div class="tl-image img-ricevimento" style="order: 1;" id="ricevimento-img"></div>
+                    <div class="tl-content" style="order: 2;">
+                        <div class="tl-number">2</div>
                         <h3 style="text-transform: uppercase;">Ricevimento</h3>
                         <h4>Casale del Bosco</h4>
-                        <div class="tl-detail" style="justify-content: flex-end;">📍 Casale Bosco, SS115, Km. 201<br>92044 Agrigento AG</div>
+                        <div class="tl-detail">📍 Casale Bosco, SS115, Km. 201<br>92044 Agrigento AG</div>
                         <a href="https://maps.app.goo.gl/vG3bZ7Y8KqW9L8M8A" target="_blank" class="btn-outline">🗺 APRI GOOGLE MAPS</a>
                     </div>
-                    <div class="tl-image img-ricevimento"></div>
                 </div>
             </div>
         </div>
@@ -422,72 +464,3 @@
             <h3>Francesco ♥ Maria Pia</h3>
             <p style="font-family: var(--font-serif); letter-spacing: 2px; font-size: 0.9rem;">30 AGOSTO 2027</p>
         </div>
-    </div>
-
-    <!-- Modale RSVP -->
-    <div id="rsvp-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 style="font-family: var(--font-serif); color: var(--dark-green); margin-bottom: 20px; text-align: center;">Conferma</h2>
-            
-            <label>Nome e Cognome</label>
-            <input type="text" id="guest-name" required>
-
-            <label>Presenza</label>
-            <select id="guest-attendance">
-                <option value="Parteciperò">Parteciperò con gioia</option>
-                <option value="Non potrò esserci">Purtroppo non potrò esserci</option>
-            </select>
-
-            <div style="display: flex; gap: 10px;">
-                <div style="flex: 1;"><label>Adulti</label><input type="number" id="guest-adults" value="1" min="0"></div>
-                <div style="flex: 1;"><label>Bambini</label><input type="number" id="guest-kids" value="0" min="0"></div>
-            </div>
-
-            <label>Intolleranze (Opzionale)</label>
-            <input type="text" id="guest-allergies">
-
-            <button class="btn-solid" style="width: 100%; margin-top: 10px;" onclick="sendWhatsApp()">Invia tramite WhatsApp ✓</button>
-        </div>
-    </div>
-
-    <script>
-        const audio = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-btn');
-        let isPlaying = false;
-
-        function toggleMusic() {
-            if (isPlaying) { audio.pause(); musicBtn.textContent = '🔇'; }
-            else { audio.play(); musicBtn.textContent = '🎵'; }
-            isPlaying = !isPlaying;
-        }
-
-        const countDownDate = new Date("Aug 30, 2027 15:30:00").getTime();
-        setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        }, 1000);
-
-        const modal = document.getElementById('rsvp-modal');
-        function openModal() { modal.style.display = 'flex'; }
-        function closeModal() { modal.style.display = 'none'; }
-        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
-
-        function sendWhatsApp() {
-            const name = document.getElementById('guest-name').value;
-            const attendance = document.getElementById('guest-attendance').value;
-            const adults = document.getElementById('guest-adults').value;
-            const kids = document.getElementById('guest-kids').value;
-            const allergies = document.getElementById('guest-allergies').value || "Nessuna";
-            if(!name) { alert("Inserisci il tuo nome per favore!"); return; }
-            let waText = `Ciao Francesco e Maria Pia! 🍋\nSono *${name}*.\n\n*Conferma:* ${attendance}\n*Adulti:* ${adults}\n*Bambini:* ${kids}\n*Intolleranze:* ${allergies}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(waText)}`, '_blank');
-            closeModal();
-        }
-    </script>
-</body>
-</html>
